@@ -16,6 +16,7 @@
                                 <tr>
                                     <th>Id User</th>
                                     <th>Nama User</th>
+                                    <th>Nomor Handphone</th>
                                     <th>Username</th>
                                     <th>Email</th>
                                     <th>Kota</th>
@@ -29,6 +30,7 @@
                                     <tr>
                                         <td><?php echo $s->UserID; ?></td>
                                         <td><?php echo $s->Namalengkap; ?></td>
+                                        <td><?php echo $s->Nomortlp; ?></td>
                                         <td><?php echo $s->Username; ?></td>
                                         <td><?php echo $s->Email; ?></td>
                                         <td><?php echo $s->Kota; ?></td>

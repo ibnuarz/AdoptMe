@@ -46,23 +46,29 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="<?php echo base_url('Admin/adminc/dashboard') ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-solid fa-inbox"></i>
                     <span>Dashboard</span></a>
             </li>
             <hr class="sidebar-divider">
             <li class="nav-item active">
                 <a class="nav-link" href="<?php echo base_url('Admin/adminc/datauser')?>">
-                <i class="fas fa-solid fa-database"></i>
+                <i class="fas fa-solid fa-user"></i>
                     <span>Data User</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="<?php echo base_url('Admin/adminc/dataras')?>">
-                <i class="fas fa-solid fa-database"></i>
+                <i class="fas fa-solid fa-list"></i>
                     <span>Data Ras</span></a>
             </li>
             <li class="nav-item active">
+                <a class="nav-link" href="<?php echo base_url('Admin/adminc/datahewan')?>">
+                <i class="fas fa-solid fa-dog"></i>
+                <i class="fas fa-solid fa-cat"></i>
+                    <span>Data Hewan</span></a>
+            </li>
+            <li class="nav-item active">
                 <a class="nav-link" href="<?php echo base_url('Admin/adminc/dataadopsi')?>">
-                <i class="fas fa-solid fa-database"></i>
+                <i class="fas fa-solid fa-pen"></i>
                     <span>Data dan Verifikasi Adopsi</span></a>
             </li>
             <div class="text-center d-none d-md-inline">

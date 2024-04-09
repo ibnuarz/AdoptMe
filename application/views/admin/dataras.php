@@ -1,7 +1,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <a href="#" class="btn btn-success text-white mb-2" data-toggle="modal" data-target="#addPaketModal"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                    <a href="#" class="btn btn-success text-white mb-2" data-toggle="modal" data-target="#addRasModal"><i class="fa fa-plus" aria-hidden="true"></i></a>
                     <!-- Page Heading 
                     <h1 class="h3 mb-2 text-gray-800">Transaksi</h1>
                     <a href="#" class="btn btn-primary text-white mb-2" data-toggle="modal" data-target="#addUserModal"><i class="fa fa-plus" aria-hidden="true"></i></a> -->
