@@ -340,4 +340,56 @@ class Adminc extends CI_Controller {
         redirect('Admin/adminc/dataadopsi');
     }
 
+    public function addAdopsi() {
+        if (empty($this->session->userdata('Username'))) {
+            redirect('Admin/adminc');
+        }
+        $data['user_data'] = $this->Madmin->getAllUser();
+        $data['animal_data'] = $this->Madmin->getAllAnimal();
+        $this->form_validation->set_rules('userID', 'User', 'required');
+        $this->form_validation->set_rules('animalID', 'Hewan', 'required');
+        $this->form_validation->set_rules('adoptionDate', 'Tanggal Adopsi', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+        $this->form_validation->set_rules('keteranganStatus', 'Keterangan Status', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('admin/layout/header');
+            $this->load->view('admin/addAdopsiModal', $data);
+            $this->load->view('admin/layout/footer');
+        } else {
+            $data = array(
+                'UserID' => $this->input->post('userID'),
+                'AnimalID' => $this->input->post('animalID'),
+                'AdoptionDate' => $this->input->post('adoptionDate'),
+                'Status' => $this->input->post('status'),
+                'KeteranganStatus' => $this->input->post('keteranganStatus')
+            );
+            $this->Madmin->insertAdopsi($data);
+            $this->Madmin->updateAnimalStatus($this->input->post('animalID'), 3);
+            redirect('Admin/adminc/dataadopsi');
+        }
+    }
+
+    public function editAdopsi($id) {
+        $this->form_validation->set_rules('adoptionDate', 'Tanggal Adopsi', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+        $this->form_validation->set_rules('keteranganStatus', 'Keterangan Status', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            // Validasi gagal, kembali ke halaman sebelumnya atau tampilkan pesan error
+            // Misalnya: redirect('Admin/adminc/dataadopsi');
+            // Atau: echo validation_errors();
+        } else {
+            $data = array(
+                'AdoptionDate' => $this->input->post('adoptionDate'),
+                'Status' => $this->input->post('status'),
+                'KeteranganStatus' => $this->input->post('keteranganStatus')
+            );
+            $this->Madmin->updateAdopsi($id, $data);
+            if ($data['Status'] == 2) {
+                $adoption = $this->Madmin->getAdoptionById($id);
+                $this->Madmin->updateAnimalStatus($adoption->AnimalID, 2);
+            }
+            redirect('Admin/adminc/dataadopsi');
+        }
+    }
+
 }

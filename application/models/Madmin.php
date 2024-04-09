@@ -108,7 +108,29 @@ class Madmin extends CI_Model{
     }
     
     public function deleteAdopsi($id) {
+        $animalID = $this->db->select('AnimalID')->where('AdoptionID', $id)->get('adopsi')->row()->AnimalID;
+        $this->db->where('AnimalID', $animalID);
+        $this->db->update('animal', array('Status' => 1));
         $this->db->where('AdoptionID', $id);
         $this->db->delete('adopsi');
+    }
+
+    public function insertAdopsi($data) {
+        $this->db->insert('adopsi', $data);
+        return $this->db->insert_id();
+    }
+
+    public function updateAnimalStatus($animalID, $status) {
+        $this->db->where('AnimalID', $animalID);
+        $this->db->update('animal', array('Status' => $status));
+    }
+
+    public function updateAdopsi($id, $data) {
+        $this->db->where('AdoptionID', $id);
+        $this->db->update('adopsi', $data);
+    }
+
+    public function getAdoptionById($id) {
+        return $this->db->get_where('adopsi', array('AdoptionID' => $id))->row();
     }
 }

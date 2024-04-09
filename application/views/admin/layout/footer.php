@@ -239,6 +239,130 @@
     </div>
     <?php endforeach; ?>
 
+    <!-- Add Adoption Modal -->
+    <div class="modal fade" id="addAdopsiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Adopsi</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addAdopsiForm" action="<?php echo site_url('Admin/adminc/addAdopsi'); ?>" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="userID">User:</label>
+                            <select class="form-control" id="userID" name="userID" required>
+                                <?php foreach ($user_data as $user) : ?>
+                                    <option value="<?php echo $user->UserID; ?>"><?php echo $user->Username . ' - ' . $user->Namalengkap; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="animalID">Hewan:</label>
+                            <select class="form-control" id="animalID" name="animalID" required>
+                                <?php foreach ($animal_data as $animal) : ?>
+                                    <?php if ($animal->Status == 1) : ?>
+                                        <option value="<?php echo $animal->AnimalID; ?>"><?php echo $animal->Animalname . ' - Umur: ' . $animal->Age . ' - Ras: ' . $animal->Namaras; ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="adoptionDate">Tanggal Adopsi:</label>
+                            <input type="date" class="form-control" id="adoptionDate" name="adoptionDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status:</label>
+                            <select class="form-control" id="status" name="status" required>
+                                <option value="1">Proses Verifikasi</option>
+                                <option value="2">Berhasil dan Teradopsi</option>
+                                <option value="3">Gagal Adopsi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <h6 class="text-warning text-center">Perhatikan Hal Berikut!</h6>
+                            <p>
+                                Keterangan Status di sisi dengan format berikut :
+                                <br>
+                                1. Jika Proses Verifikasi : 'Sedang Proses Verifikasi Oleh Admin'
+                                <br>
+                                2. Jika Berhasil : 'Berhasil dan Binatang Teradopsi'
+                                <br>
+                                3. Jika Gagal : 'Gagal Adopsi dikarenakan : ..(isi dengan alasan)'
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="keteranganStatus">Keterangan Status:</label>
+                            <textarea class="form-control" id="keteranganStatus" name="keteranganStatus" rows="3" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Tambah Adopsi</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Edit Adoption Modal -->
+<?php foreach ($adoption_data as $adoption) : ?>
+<div class="modal fade" id="editAdopsiModal<?php echo $adoption->AdoptionID; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Data Adopsi</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editAdopsiForm<?php echo $adoption->AdoptionID; ?>" action="<?php echo site_url('Admin/adminc/editAdopsi/' . $adoption->AdoptionID); ?>" method="post">
+                    <input type="hidden" name="adoptionID" value="<?php echo $adoption->AdoptionID; ?>">
+                    
+                    <!-- User Data -->
+                    <div class="form-group">
+                        <label for="userID">User:</label>
+                        <input type="text" class="form-control" id="userID" name="userID" value="<?php echo $user->Username . ' - ' . $user->Namalengkap; ?>" disabled>
+                    </div>
+                    
+                    <!-- Animal Data -->
+                    <div class="form-group">
+                        <label for="animalID">Hewan:</label>
+                        <input type="text" class="form-control" id="animalID" name="animalID" value="<?php echo $adoption->Animalname . ' - Umur: ' . $adoption->Age . ' - Ras: ' . $adoption->Namaras; ?>" disabled>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adoptionDate">Tanggal Adopsi:</label>
+                        <input type="date" class="form-control" id="adoptionDate" name="adoptionDate" value="<?php echo $adoption->Adoptiondate; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select class="form-control" id="status" name="status" required>
+                            <option value="1" <?php echo ($adoption->Status == 1) ? 'selected' : ''; ?>>Proses Verifikasi</option>
+                            <option value="2" <?php echo ($adoption->Status == 2) ? 'selected' : ''; ?>>Berhasil dan Teradopsi</option>
+                            <option value="3" <?php echo ($adoption->Status == 3) ? 'selected' : ''; ?>>Gagal Adopsi</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="keteranganStatus">Keterangan Status:</label>
+                        <textarea class="form-control" id="keteranganStatus" name="keteranganStatus" rows="3" required><?php echo $adoption->Keteranganstatus; ?></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Edit Adopsi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>
+
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
