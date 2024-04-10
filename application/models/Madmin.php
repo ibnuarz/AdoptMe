@@ -133,4 +133,34 @@ class Madmin extends CI_Model{
     public function getAdoptionById($id) {
         return $this->db->get_where('adopsi', array('AdoptionID' => $id))->row();
     }
+
+    public function getRasDescription($rasID)
+    {
+        $query = $this->db->select('Deskripsi')
+                          ->where('RasID', $rasID)
+                          ->get('ras');
+        if ($query->num_rows() > 0) {
+            return $query->row()->Deskripsi;
+        } else {
+            return NULL;
+        }
+    }
+
+    public function getTotalAnimalTeradop()
+    {
+        $this->db->where('Status', 2);
+        return $this->db->count_all_results('animal');
+    }
+
+    public function getTotalAnimalBTeradop()
+    {
+    $this->db->where('Status', 1);
+    return $this->db->count_all_results('animal');
+    }
+
+    public function getTotalAnimalPAdop()
+    {
+    $this->db->where('Status', 3);
+    return $this->db->count_all_results('animal');
+    }
 }

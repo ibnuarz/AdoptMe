@@ -488,7 +488,85 @@
             }
         });
     }
-    
+
+    var indexToRasID = {
+        0: 201, 
+        1: 202, 
+        2: 203, 
+        3: 204, 
+        4: 205, 
+        5: 206, 
+        6: 207, 
+        7: 208, 
+        8: 209, 
+        9: 210, 
+        10: 211, 
+        11: 212, 
+        12: 213, 
+        13: 214, 
+        14: 215 
+    };
+
+    document.getElementById("uploadForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+
+        fetch('https://predictcat-jw2zdtsf7a-et.a.run.app', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            var resultDiv = document.getElementById("predictionResult");
+            resultDiv.innerHTML = `
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Prediction Result
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Image:</strong></p>
+                            <img src="${URL.createObjectURL(formData.get('file'))}" class="img-thumbnail" style="max-width: 100%;" alt="Uploaded Image">
+                            <p><strong>Nama Gambar :</strong> ${formData.get('file').name}</p>
+                            <p><strong>Index (id) :</strong> ${data.index}</p>
+                            <p><strong>Ras Terdeteksi Sebagai :</strong> ${data.label}</p>
+                            <p><strong>Probabilitas :</strong> ${data.probability}</p>
+                            <button class="btn btn-success mt-2" id="cekDeskripsiBtn" data-index="${data.index}">Cek Fakta</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById("cekDeskripsiBtn").addEventListener("click", function() {
+                var index = this.getAttribute("data-index");
+                var rasID = indexToRasID[index];
+                if (rasID) {
+                    fetch('<?php echo site_url("Admin/adminc/getRasDescription/") ?>' + rasID)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success && data.description) {
+                            var deskripsiElement = document.createElement("p");
+                            deskripsiElement.textContent = data.description;
+                            deskripsiElement.classList.add("alert", "alert-success","p-2","mt-2"); 
+                            var buttonParent = this.parentElement;
+                            buttonParent.appendChild(deskripsiElement);
+                        } else {
+                            console.error('Deskripsi ras tidak ditemukan untuk RasID: ' + rasID);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                } else {
+                    console.error('RasID tidak ditemukan untuk indeks: ' + index);
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+
     </script>
 </body>
 

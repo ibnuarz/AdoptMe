@@ -27,6 +27,19 @@ class Adminc extends CI_Controller {
             $animal->gambar = $this->Madmin->getAnimalImages($animal->AnimalID);
         }
         $data['animal_data'] = $animal_data;
+        $adoption_data = $this->Madmin->getAllAdoptionsWithImages();
+        $grouped_adoptions = [];
+        foreach ($adoption_data as $adoption) {
+            if (!isset($grouped_adoptions[$adoption->AnimalID])) {
+                $grouped_adoptions[$adoption->AnimalID] = $adoption;
+                $grouped_adoptions[$adoption->AnimalID]->images = [];
+            }
+            $grouped_adoptions[$adoption->AnimalID]->images[] = $adoption->NamaGambar;
+        }
+        $data['adoption_data'] = $grouped_adoptions;
+        $data['teradopsi_data'] = $this->Madmin->getTotalAnimalTeradop();
+		$data['belumadopsi_data'] = $this->Madmin->getTotalAnimalBTeradop();
+        $data['verifadopsi_data'] = $this->Madmin->getTotalAnimalPAdop();
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/layout/dashboard', $data);
 		$this->load->view('admin/layout/footer');
@@ -68,6 +81,16 @@ class Adminc extends CI_Controller {
             $animal->gambar = $this->Madmin->getAnimalImages($animal->AnimalID);
         }
         $data['animal_data'] = $animal_data;
+        $adoption_data = $this->Madmin->getAllAdoptionsWithImages();
+        $grouped_adoptions = [];
+        foreach ($adoption_data as $adoption) {
+            if (!isset($grouped_adoptions[$adoption->AnimalID])) {
+                $grouped_adoptions[$adoption->AnimalID] = $adoption;
+                $grouped_adoptions[$adoption->AnimalID]->images = [];
+            }
+            $grouped_adoptions[$adoption->AnimalID]->images[] = $adoption->NamaGambar;
+        }
+        $data['adoption_data'] = $grouped_adoptions;
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/datauser',$data);
 		$this->load->view('admin/layout/footer');
@@ -92,6 +115,16 @@ class Adminc extends CI_Controller {
             $animal->gambar = $this->Madmin->getAnimalImages($animal->AnimalID);
         }
         $data['animal_data'] = $animal_data;
+        $adoption_data = $this->Madmin->getAllAdoptionsWithImages();
+        $grouped_adoptions = [];
+        foreach ($adoption_data as $adoption) {
+            if (!isset($grouped_adoptions[$adoption->AnimalID])) {
+                $grouped_adoptions[$adoption->AnimalID] = $adoption;
+                $grouped_adoptions[$adoption->AnimalID]->images = [];
+            }
+            $grouped_adoptions[$adoption->AnimalID]->images[] = $adoption->NamaGambar;
+        }
+        $data['adoption_data'] = $grouped_adoptions;
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/dataras',$data);
 		$this->load->view('admin/layout/footer');
@@ -160,6 +193,16 @@ class Adminc extends CI_Controller {
             $animal->gambar = $this->Madmin->getAnimalImages($animal->AnimalID);
         }
         $data['animal_data'] = $animal_data;
+        $adoption_data = $this->Madmin->getAllAdoptionsWithImages();
+        $grouped_adoptions = [];
+        foreach ($adoption_data as $adoption) {
+            if (!isset($grouped_adoptions[$adoption->AnimalID])) {
+                $grouped_adoptions[$adoption->AnimalID] = $adoption;
+                $grouped_adoptions[$adoption->AnimalID]->images = [];
+            }
+            $grouped_adoptions[$adoption->AnimalID]->images[] = $adoption->NamaGambar;
+        }
+        $data['adoption_data'] = $grouped_adoptions;
         $this->load->view('admin/layout/header');
         $this->load->view('admin/dataanimal',$data);
         $this->load->view('admin/layout/footer');
@@ -353,7 +396,7 @@ class Adminc extends CI_Controller {
         $this->form_validation->set_rules('keteranganStatus', 'Keterangan Status', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('admin/layout/header');
-            $this->load->view('admin/addAdopsiModal', $data);
+            $this->load->view('admin/dataadopsi', $data);
             $this->load->view('admin/layout/footer');
         } else {
             $data = array(
@@ -374,9 +417,9 @@ class Adminc extends CI_Controller {
         $this->form_validation->set_rules('status', 'Status', 'required');
         $this->form_validation->set_rules('keteranganStatus', 'Keterangan Status', 'required');
         if ($this->form_validation->run() == FALSE) {
-            // Validasi gagal, kembali ke halaman sebelumnya atau tampilkan pesan error
-            // Misalnya: redirect('Admin/adminc/dataadopsi');
-            // Atau: echo validation_errors();
+            $this->load->view('admin/layout/header');
+            $this->load->view('admin/dataadopsi', $data);
+            $this->load->view('admin/layout/footer');
         } else {
             $data = array(
                 'AdoptionDate' => $this->input->post('adoptionDate'),
@@ -392,4 +435,74 @@ class Adminc extends CI_Controller {
         }
     }
 
+    public function detectAnjing() {
+        if(empty($this->session->userdata('Username'))) {
+            redirect('Admin/adminc');
+        }
+    
+        $data['user_data'] = $this->Madmin->getAllUser();
+        $data['ras_data'] = $this->Madmin->getAllras();
+        $animal_data = $this->Madmin->getAllAnimal();
+        foreach ($animal_data as $animal) {
+            $animal->gambar = $this->Madmin->getAnimalImages($animal->AnimalID);
+        }
+        $data['animal_data'] = $animal_data;
+        $adoption_data = $this->Madmin->getAllAdoptionsWithImages();
+        $grouped_adoptions = [];
+        foreach ($adoption_data as $adoption) {
+            if (!isset($grouped_adoptions[$adoption->AnimalID])) {
+                $grouped_adoptions[$adoption->AnimalID] = $adoption;
+                $grouped_adoptions[$adoption->AnimalID]->images = [];
+            }
+            $grouped_adoptions[$adoption->AnimalID]->images[] = $adoption->NamaGambar;
+        }
+        $data['adoption_data'] = $grouped_adoptions;
+        $this->load->view('admin/layout/header');
+        $this->load->view('admin/anjing', $data);
+        $this->load->view('admin/layout/footera');
+    }
+
+    public function detectKucing() {
+        if(empty($this->session->userdata('Username'))) {
+            redirect('Admin/adminc');
+        }
+    
+        $data['user_data'] = $this->Madmin->getAllUser();
+        $data['ras_data'] = $this->Madmin->getAllras();
+        $animal_data = $this->Madmin->getAllAnimal();
+        foreach ($animal_data as $animal) {
+            $animal->gambar = $this->Madmin->getAnimalImages($animal->AnimalID);
+        }
+        $data['animal_data'] = $animal_data;
+        $adoption_data = $this->Madmin->getAllAdoptionsWithImages();
+        $grouped_adoptions = [];
+        foreach ($adoption_data as $adoption) {
+            if (!isset($grouped_adoptions[$adoption->AnimalID])) {
+                $grouped_adoptions[$adoption->AnimalID] = $adoption;
+                $grouped_adoptions[$adoption->AnimalID]->images = [];
+            }
+            $grouped_adoptions[$adoption->AnimalID]->images[] = $adoption->NamaGambar;
+        }
+        $data['adoption_data'] = $grouped_adoptions;
+        $this->load->view('admin/layout/header');
+        $this->load->view('admin/kucing', $data);
+        $this->load->view('admin/layout/footerk');
+    }
+    public function getRasDescription($rasID)
+    {
+        $description = $this->Madmin->getRasDescription($rasID);
+        if ($description) {
+            $response = array(
+                'success' => true,
+                'description' => $description
+            );
+        } else {
+            $response = array(
+                'success' => false,
+                'message' => 'Deskripsi tidak ditemukan'
+            );
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
 }

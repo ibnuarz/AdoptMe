@@ -71,10 +71,27 @@
                 <i class="fas fa-solid fa-pen"></i>
                     <span>Data dan Verifikasi Adopsi</span></a>
             </li>
+            <hr class="sidebar-divider">
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-solid fa-bars"></i>
+                    <span>Fitur Deteksi Ras</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Menu : </h6>
+                        <a class="collapse-item" href="<?php echo base_url('Admin/adminc/detectKucing')?>">Ras Kucing</a>
+                        <a class="collapse-item" href="<?php echo base_url('Admin/adminc/detectAnjing')?>">Ras Anjing</a>
+                        <a class="collapse-item" href="<?php echo base_url('Admin/adminc/bugdetect')?>">Laporan Error / Bug</a>
+                    </div>
+                </div>
+            </li>
+            <hr class="sidebar-divider">
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
         </ul>
         <!-- End of Sidebar -->
 
