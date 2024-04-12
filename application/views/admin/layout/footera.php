@@ -576,15 +576,15 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            Prediction Result
+                            Hasil Prediksi
                         </div>
                         <div class="card-body">
-                            <p><strong>Image:</strong></p>
+                            <p><strong>Gambar :</strong></p>
                             <img src="${URL.createObjectURL(formData.get('file'))}" class="img-thumbnail" style="max-width: 100%;" alt="Uploaded Image">
                             <p><strong>Nama Gambar :</strong> ${formData.get('file').name}</p>
                             <p><strong>Index (id) :</strong> ${data.index}</p>
                             <p><strong>Ras Terdeteksi Sebagai :</strong> ${data.label}</p>
-                            <p><strong>Probabilitas :</strong> ${data.probability}</p>
+                            <p><strong>Ke-Akurasian :</strong> ${(data.probability * 100).toFixed(2)}%</p>
                             <button class="btn btn-success mt-2" id="cekDeskripsiBtn" data-index="${data.index}">Cek Fakta</button>
                         </div>
                     </div>

@@ -26,7 +26,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($user_data as $s) : ?>
+                            <?php foreach ($user_data as $s) : ?>
+                                <?php if ($s->UserID != 1) : ?> 
                                     <tr>
                                         <td><?php echo $s->UserID; ?></td>
                                         <td><?php echo $s->Namalengkap; ?></td>
@@ -40,7 +41,8 @@
                                             <a href="#" class="btn btn-danger text-white m-1" onclick="confirmDelete('<?php echo site_url('Admin/adminc/deleteuser/' . $s->UserID); ?>')"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                             </tbody>
                         </table>
                                 

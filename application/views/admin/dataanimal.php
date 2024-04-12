@@ -8,7 +8,7 @@
                         <h6 class="m-0 font-weight-bold text-success">Data Hewan</h6>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                    <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -19,6 +19,7 @@
                                 <th>Status</th>
                                 <th>Gambar</th>
                                 <th>RasID</th>
+                                <th>Nama Pengupload</th>
                                 <th>Nama Ras</th>
                                 <th>Aksi</th>
                             </tr>
@@ -47,6 +48,7 @@
                                         <?php endforeach; ?>
                                     </td>
                                     <td><?php echo $animal->RasID; ?></td>
+                                    <td><?php echo $animal->Namalengkap; ?></td>
                                     <td><?php echo $animal->Namaras; ?></td>
                                     <td>
                                         <a href="#" class="btn btn-warning text-white m-1" data-toggle="modal" data-target="#editAnimalModal<?php echo $animal->AnimalID; ?>"><i class="fa fa-list" aria-hidden="true"></i></a>

@@ -122,6 +122,9 @@
                 <div class="modal-body">
                     <form id="addAnimalForm" action="<?php echo site_url('Admin/adminc/addAnimal'); ?>" method="post" enctype="multipart/form-data">
                         <div class="form-group">
+                            <input type="hidden" id="userID" name="userID" value="1">
+                        </div>
+                        <div class="form-group">
                             <label for="animalname">Nama Hewan:</label>
                             <input type="text" class="form-control" id="animalname" name="animalname" required>
                         </div>
@@ -254,9 +257,11 @@
                         <div class="form-group">
                             <label for="userID">User:</label>
                             <select class="form-control" id="userID" name="userID" required>
-                                <?php foreach ($user_data as $user) : ?>
+                            <?php foreach ($user_data as $user) : ?>
+                                <?php if ($user->UserID != 1) : ?>
                                     <option value="<?php echo $user->UserID; ?>"><?php echo $user->Username . ' - ' . $user->Namalengkap; ?></option>
-                                <?php endforeach; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-group">
@@ -377,7 +382,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap core JavaScript-->
-    <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap.bundle.min.js')?>"></script>
 
     <!-- Core plugin JavaScript-->

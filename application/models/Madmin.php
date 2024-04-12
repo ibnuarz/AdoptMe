@@ -36,11 +36,12 @@ class Madmin extends CI_Model{
     }
     
     public function getAllAnimal() {
-        $this->db->select('animal.AnimalID, animal.Animalname, animal.Age, animal.Deskripsi, animal.Status, ras.RasID, ras.Namaras');
+        $this->db->select('animal.AnimalID, animal.Animalname, animal.Age, animal.Deskripsi, animal.Status, ras.RasID, ras.Namaras, user.UserID, user.Namalengkap');
         $this->db->from('animal');
         $this->db->join('ras', 'animal.RasID = ras.RasID');
+        $this->db->join('user', 'animal.UserID = user.UserID');
         $query = $this->db->get();
-        return $query->result();
+        return $query->result();        
     }
     
     public function getAnimalImages($animalID) {
@@ -137,8 +138,8 @@ class Madmin extends CI_Model{
     public function getRasDescription($rasID)
     {
         $query = $this->db->select('Deskripsi')
-                          ->where('RasID', $rasID)
-                          ->get('ras');
+            ->where('RasID', $rasID)
+            ->get('ras');
         if ($query->num_rows() > 0) {
             return $query->row()->Deskripsi;
         } else {

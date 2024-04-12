@@ -220,13 +220,14 @@ class Adminc extends CI_Controller {
         if (empty($this->session->userdata('Username'))) {
             redirect('Admin/adminc');
         }
-    
+
         if ($this->input->post()) {
             $this->form_validation->set_rules('animalname', 'Nama Hewan', 'required');
             $this->form_validation->set_rules('age', 'Usia', 'required|numeric');
             $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
             $this->form_validation->set_rules('status', 'Status', 'required');
             $this->form_validation->set_rules('rasID', 'Ras Hewan', 'required');
+            $this->form_validation->set_rules('userID', 'User Id', 'required');
     
             if ($this->form_validation->run() == TRUE) {
                 $data = array(
@@ -234,6 +235,7 @@ class Adminc extends CI_Controller {
                     'Age' => $this->input->post('age'),
                     'Deskripsi' => $this->input->post('deskripsi'),
                     'Status' => $this->input->post('status'),
+                    'UserID' => $this->input->post('userID'), 
                     'RasID' => $this->input->post('rasID')
                 );
                 $animalID = $this->Madmin->insertAnimal($data);
@@ -263,6 +265,55 @@ class Adminc extends CI_Controller {
                 }
     
                 redirect('Admin/adminc/datahewan');
+            }
+        }
+    }
+
+    public function addAnimalUser() {
+        if ($this->input->post()) {
+            $this->form_validation->set_rules('animalname', 'Nama Hewan', 'required');
+            $this->form_validation->set_rules('age', 'Usia', 'required|numeric');
+            $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+            $this->form_validation->set_rules('status', 'Status', 'required');
+            $this->form_validation->set_rules('rasID', 'Ras Hewan', 'required');
+            $this->form_validation->set_rules('userID', 'User Id', 'required');
+    
+            if ($this->form_validation->run() == TRUE) {
+                $data = array(
+                    'Animalname' => $this->input->post('animalname'),
+                    'Age' => $this->input->post('age'),
+                    'Deskripsi' => $this->input->post('deskripsi'),
+                    'Status' => $this->input->post('status'),
+                    'UserID' => $this->input->post('userID'), 
+                    'RasID' => $this->input->post('rasID')
+                );
+                $animalID = $this->Madmin->insertAnimal($data);
+                $gambarData = $_FILES['gambar'];
+                foreach ($gambarData['name'] as $key => $gambarName) {
+                    $config['upload_path'] = './Assets/img/post';
+                    $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                    $config['max_size'] = 2048; 
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload', $config);
+                    $_FILES['gambar']['name'] = $gambarData['name'][$key];
+                    $_FILES['gambar']['type'] = $gambarData['type'][$key];
+                    $_FILES['gambar']['tmp_name'] = $gambarData['tmp_name'][$key];
+                    $_FILES['gambar']['error'] = $gambarData['error'][$key];
+                    $_FILES['gambar']['size'] = $gambarData['size'][$key];
+    
+                    if ($this->upload->do_upload('gambar')) {
+                        $gambarInfo = $this->upload->data();
+                        $dataGambar = array(
+                            'AnimalID' => $animalID,
+                            'NamaGambar' => $gambarInfo['file_name']
+                        );
+                        $this->Madmin->insertAnimalImage($dataGambar);
+                    } else {
+                        echo $this->upload->display_errors();
+                    }
+                }
+    
+                redirect('main/dashboard');
             }
         }
     }
@@ -430,6 +481,9 @@ class Adminc extends CI_Controller {
             if ($data['Status'] == 2) {
                 $adoption = $this->Madmin->getAdoptionById($id);
                 $this->Madmin->updateAnimalStatus($adoption->AnimalID, 2);
+            } else if ($data['Status'] == 3) {
+                $adoption = $this->Madmin->getAdoptionById($id);
+                $this->Madmin->updateAnimalStatus($adoption->AnimalID, 1);
             }
             redirect('Admin/adminc/dataadopsi');
         }

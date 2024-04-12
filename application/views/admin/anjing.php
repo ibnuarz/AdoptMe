@@ -2,8 +2,9 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Predict Dog Breed</h1>
-        <p class="mb-4">Upload an image to predict the dog breed.</p>
+        <h1 class="h3 mb-2 text-gray-800">Prediksi Ras Anjing</h1>
+        <p class="mb-4">Upload Image dan klik tombol 'prediksi' untuk memprediksi</p>
+        <p class="text-danger"><strong>Pastikan gambar jelas, Untuk mempengaruhi Akurasi dalam mendeteksi Object!</p>
 
         <!-- Upload Form -->
         <div class="row">
