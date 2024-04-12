@@ -10,6 +10,10 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Prediksi Ras Anjing</h1>
                 <p class="mb-4">Upload Gambar dan klik tombol 'prediksi' untuk memprediksi</p>
+                <p class="mb-4 text-danger">
+                    Jika Diklik 'prediksi' tidak muncul hasil tunggu beberapa detik lalu klik tombol kembali<br>
+                    Jika Masih belum bisa upload gambar kembali dan klik tombol kembali<br>
+                </p>
                 <p class="text-danger"><strong>Pastikan gambar jelas, Untuk mempengaruhi Akurasi dalam mendeteksi Object!</p>
             </div>
             <div class="col-lg-4"></div>

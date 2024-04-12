@@ -66,7 +66,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-outline-success" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger" href="<?php echo base_url('Main/logout')?>">Logout</a>
+                    <a class="btn btn-outline-danger" href="<?php echo base_url('Main/logout')?>">Logout</a>
                 </div>
             </div>
         </div>
