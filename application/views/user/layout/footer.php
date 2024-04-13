@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-lg-12">
                     <div class="under-footer">
-                        <p>Copyright © 2022 AdoptMe Co., Ltd. All Rights Reserved. 
+                        <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> AdoptMe Co., Ltd. All Rights Reserved. 
                         <ul>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>

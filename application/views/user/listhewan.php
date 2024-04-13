@@ -18,22 +18,28 @@
     <!-- Dropdown untuk filter jenis hewan -->
     <div class="container">
         <div class="row m-3">
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4">
-                <div class="input-group">
-                    <select class="custom-select" id="inputGroupSelect04">
-                        <option selected>Filter Berdasarkan...</option>
-                        <option value="1">Anjing</option>
-                        <option value="2">Kucing</option>
-                    </select>
-                    <div class="input-group-append ml-2">
-                        <button class="btn btn-outline-success" type="button">Cari</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4"></div>
+			<div class="col-lg-4"></div>
+			<div class="col-lg-4">
+				<form class="form-inline" id="search" action="<?php echo base_url('main/searchAnimals'); ?>" method="post">
+					<div class="input-group">
+						<input type="text" class="form-control" name="keyword" placeholder="Cari hewan...">
+						<div class="input-group-append">
+							<button class="btn btn-outline-success ml-2" type="submit">Cari</button>
+							<a href="<?php echo base_url('main/listHewan'); ?>" class="btn btn-outline-danger ml-2">Reset</a>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-lg-4"></div>
         </div>
         <div class="row">
+		<?php if (isset($message)): ?>
+			<div class="col-md-6 offset-md-3">
+			<div class="alert alert-danger" role="alert">
+				<?php echo $message; ?>
+			</div>
+			</div>
+		<?php endif; ?>
         <?php foreach ($allAnimals as $animal): ?>
                 <div class="col-lg-4">
                     <div class="item">
@@ -171,4 +177,3 @@
 			</div>
 		</div>
 <?php endforeach; ?>
-

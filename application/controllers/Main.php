@@ -95,7 +95,7 @@ class Main extends CI_Controller {
 
     public function logout(){
 		$this->session->sess_destroy();
-		redirect('main/login');
+		redirect('main/index');
 	}
 
     public function dashboard(){
@@ -165,14 +165,23 @@ class Main extends CI_Controller {
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 1;
         $start = ($page - 1) * $config['per_page'];
-        $jenisHewan = $this->input->post('jenisHewan');
-    
-        if (!empty($jenisHewan)) {
-            $data['allAnimals'] = $this->Muser->filterByJenisHewan($jenisHewan, $config['per_page'], $start);
+        if ($this->input->post('submit')) {
+            $jenisHewan = $this->input->post('jenisHewan');
+            $data['allAnimals'] = $this->Muser->getAllAnimalByType($jenisHewan);
         } else {
             $data['allAnimals'] = $this->Muser->getAllAnimalsWithImages($config['per_page'], $start);
         }
+        $this->load->view('user/layout/header');
+        $this->load->view('user/listhewan', $data);
+        $this->load->view('user/layout/footer');
+    }
 
+    public function searchAnimals() {
+        $keyword = $this->input->post('keyword');
+        $data['allAnimals'] = $this->Muser->searchAnimals($keyword);
+        if (empty($data['allAnimals'])) {
+            $data['message'] = 'Maaf Yang Anda Cari Belum Tersedia. <br><i>Coba Untuk Menggunakan Spesifik Keywords. klik tombol reset untuk kembali</i>';
+        }
         $this->load->view('user/layout/header');
         $this->load->view('user/listhewan', $data);
         $this->load->view('user/layout/footer');
@@ -186,7 +195,6 @@ class Main extends CI_Controller {
             foreach ($riwayat_adopsi as $adopsi) {
                 $adopsi->total_laporan = $this->Muser->countLaporanByAdoptionID($adopsi->AdoptionID);
             }
-    
             $data['riwayat_adopsi'] = $riwayat_adopsi;
             $this->load->view('user/layout/header');
             $this->load->view('user/riwayatadopsi', $data);
@@ -291,5 +299,75 @@ class Main extends CI_Controller {
         $this->load->view('user/fitur/kucing');
         $this->load->view('user/layout/footer');
     }
+
+    public function dataProfile(){
+        if(empty($this->session->userdata('Username'))) {
+            redirect('main/login');        
+        }
+        $data['user'] = $this->Muser->getUserByUsername($this->session->userdata('Username'));
+        $this->load->view('user/layout/header');
+        $this->load->view('user/profile', $data);
+        $this->load->view('user/layout/footer');
+    }
+
+    public function updateProfile() {
+        if(empty($this->session->userdata('Username'))) {
+            redirect('main/login');        
+        }
+        $this->form_validation->set_rules('namalengkap', 'Nama Lengkap', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('nomortlp', 'Nomor Telepon', 'required');
+        $this->form_validation->set_rules('kota', 'Kota', 'required');
+        $this->form_validation->set_rules('kecamatan', 'Kecamatan', 'required');
+        $this->form_validation->set_rules('alamatfull', 'Alamat Lengkap', 'required');
+        if ($this->form_validation->run() == true) {
+            $username = $this->session->userdata('Username');
+            $data = array(
+                'Namalengkap' => $this->input->post('namalengkap'),
+                'Email' => $this->input->post('email'),
+                'Nomortlp' => $this->input->post('nomortlp'),
+                'Kota' => $this->input->post('kota'),
+                'Kecamatan' => $this->input->post('kecamatan'),
+                'Alamatfull' => $this->input->post('alamatfull')
+            );
+            $this->Muser->updateUserProfile($username, $data);
+            $this->session->set_flashdata('success_message', 'Profil berhasil diperbarui.');
+            redirect('main/dataProfile');
+        } else {
+            redirect('main/dataProfile');
+        }
+    }
+
+    public function dataHewanByUser(){
+        if(empty($this->session->userdata('Username'))){
+            redirect('main/login');
+        }
+        $animal_data = $this->Muser->getAllAnimalByUser();
+        $ras_data = $this->Muser->getAllRas();
+        foreach ($animal_data as $animal) {
+            $animal->gambar = $this->Muser->getAnimalImagesUser($animal->AnimalID);
+        }
+        $data['animal_data'] = $animal_data;
+        $data['ras_data'] = $ras_data;
+        $this->load->view('user/layout/header');
+        $this->load->view('user/listhewanuser',$data);
+        $this->load->view('user/layout/footer');
+    }
     
+    public function deleteanimal($id){
+        if(empty($this->session->userdata('Username'))){
+            redirect('main/login');
+        }
+        $this->Muser->deleteAnimal($id);
+        redirect('main/dataHewanByUser');
+    }
+
+    public function deleteImage($gambarID) {
+        if (empty($this->session->userdata('Username'))) {
+            redirect('main/login');
+        }
+        $this->Muser->deleteImageEdit($gambarID);
+        redirect('main/dataHewanByUser/' . $animalID);
+    }
+
 }

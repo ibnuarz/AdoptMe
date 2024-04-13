@@ -313,7 +313,7 @@ class Adminc extends CI_Controller {
                     }
                 }
     
-                redirect('main/dashboard');
+                redirect('Main/listHewan/1');
             }
         }
     }
@@ -352,6 +352,39 @@ class Adminc extends CI_Controller {
         redirect('Admin/adminc/datahewan');
     }
     
+    public function editAnimalUSer() {
+        if (empty($this->session->userdata('Username'))) {
+            redirect('main/login');
+        }
+        if ($this->input->post()) {
+            $id = $this->input->post('animalID');
+            
+            $this->form_validation->set_rules('animalname', 'Nama Hewan', 'required');
+            $this->form_validation->set_rules('age', 'Usia', 'required|numeric');
+            $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+            $this->form_validation->set_rules('status', 'Status', 'required');
+            $this->form_validation->set_rules('rasID', 'Ras Hewan', 'required');
+    
+            if ($this->form_validation->run() == TRUE) {
+                $data = array(
+                    'Animalname' => $this->input->post('animalname'),
+                    'Age' => $this->input->post('age'),
+                    'Deskripsi' => $this->input->post('deskripsi'),
+                    'Status' => $this->input->post('status'),
+                    'RasID' => $this->input->post('rasID')
+                );
+                $this->Madmin->editAnimal($id, $data);
+                
+                if (!empty($_FILES['gambar']['name'][0])) {
+                    $this->uploadImages($id);
+                }
+    
+                redirect('main/dataHewanByUser');
+            } 
+            
+        }
+        redirect('main/dataHewanByUser');
+    }
     
     
     private function uploadImages($animalID) {
@@ -390,6 +423,8 @@ class Adminc extends CI_Controller {
         $this->Madmin->deleteImageEdit($gambarID);
         redirect('Admin/adminc/editAnimal/' . $animalID);
     }
+
+    
 
     public function getRasByJenis() {
         if ($this->input->post('jenis')) {

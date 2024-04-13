@@ -7,9 +7,12 @@
         <div class="row m-3">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
-                <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Prediksi Ras Kucing</h1>
                 <p class="mb-4">Upload Gambar dan klik tombol 'prediksi' untuk memprediksi</p>
+                <p class="mb-4 text-danger">
+                    Jika Diklik 'prediksi' tidak muncul hasil tunggu kisaran 10 - 50 detik, lalu klik tombol kembali<br>
+                    Jika Masih belum bisa upload gambar kembali dan klik tombol kembali<br>
+                </p>
                 <p class="text-danger"><strong>Pastikan gambar jelas, Untuk mempengaruhi Akurasi dalam mendeteksi Object!</p>
             </div>
             <div class="col-lg-4"></div>

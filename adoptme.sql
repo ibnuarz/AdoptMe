@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2024 at 10:36 PM
+-- Generation Time: Apr 13, 2024 at 10:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -57,15 +57,6 @@ CREATE TABLE `adopsi` (
   `Keteranganstatus` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `adopsi`
---
-
-INSERT INTO `adopsi` (`AdoptionID`, `UserID`, `AnimalID`, `Adoptiondate`, `Status`, `Keteranganstatus`) VALUES
-(42, 11, 29, '2024-04-13', 1, 'Proses Verifikasi Oleh Admin'),
-(43, 11, 24, '2024-04-13', 2, 'Berhasil dan Binatang Teradopsi'),
-(44, 11, 26, '2024-04-13', 3, 'Gagal Adopsi dikarenakan : Profile anda belum lengkap');
-
 -- --------------------------------------------------------
 
 --
@@ -87,21 +78,19 @@ CREATE TABLE `animal` (
 --
 
 INSERT INTO `animal` (`AnimalID`, `Animalname`, `Age`, `Deskripsi`, `Status`, `UserID`, `RasID`) VALUES
-(17, 'Kucing1', 1, 'Kucing1', 1, 1, 201),
 (18, 'Kucing2', 1, 'Kucing2', 1, 1, 201),
-(19, 'Kucing3', 0, 'Kucing3', 1, 1, 202),
+(19, 'Kucing3', 0, 'Kucing3333333', 1, 1, 202),
 (20, 'Kucing4', 1, 'Kucing4', 1, 1, 205),
 (21, 'kucing5', 1, 'kucing5', 1, 1, 215),
 (22, 'Kucing6', 1, 'Kucing6', 1, 1, 206),
 (23, 'kucing7', 0, 'kucing7', 1, 1, 212),
-(24, 'Anjing1', 1, 'Anjing1', 2, 1, 116),
+(24, 'Anjing1', 1, 'Anjing1', 1, 1, 116),
 (25, 'Anjing2', 2, 'Anjing2', 1, 1, 118),
 (26, 'Anjing3', 2, 'Anjing3', 1, 1, 111),
 (27, 'anjing4', 2, 'anjing4', 1, 1, 110),
 (28, 'anjing5', 2, 'anjing5', 1, 1, 1),
-(29, 'anjing6', 1, 'anjing6', 3, 1, 111),
-(30, 'Temuan Kucing Jakarta1', 0, 'Temuan Kucing Jakarta1', 1, 1, 2),
-(31, 'Temuan Kucing Jakarta2', 2, 'Temuan Kucing Jakarta2', 1, 1, 215);
+(29, 'anjing6', 1, 'anjing6', 1, 1, 111),
+(31, 'Tidak Diketahui', 2, 'Temuan Kucing Jakarta2', 1, 1, 215);
 
 -- --------------------------------------------------------
 
@@ -120,27 +109,19 @@ CREATE TABLE `gambar_animal` (
 --
 
 INSERT INTO `gambar_animal` (`GambarID`, `AnimalID`, `NamaGambar`) VALUES
-(19, 17, '5db894bc915923cb1fd6ca2d34630059.jpg'),
-(22, 17, '63fad1e37de87f2cb51a0a76532cf972.jpg'),
 (23, 18, '2f8820bb74e19f2aa1490540ad53a46c.jpg'),
 (24, 18, 'ab5c4236eae39e45f3b07b46cb968a57.jpg'),
-(25, 18, '2419c73a27c94e17f856c498b3beabbc.jpg'),
 (26, 19, 'f79be6086b04408fe2ac7af5b46727b3.jpg'),
 (27, 19, '4a3acc945c8d2c52b2d39a22fd53dc03.jpg'),
 (28, 19, 'e0046130dc4522f8c0575c8c519a32b7.jpg'),
-(29, 19, '9fd9fae96cf0fe3cec0c9b47a4d361eb.jpg'),
 (30, 20, '00ea2a8564353100f6074795874b35a4.jpg'),
 (31, 20, '3d36a2dadc0e3cf3a58d258df7c3f500.jpg'),
-(32, 20, 'c42fafe9035b24555d718419e13ac97e.jpg'),
-(33, 20, '63d9636795f6336fb86da0592219fadd.jpg'),
-(34, 21, 'eb4430154d331a22c37f1c51b27b5bcb.jpg'),
 (35, 21, 'f8046372adff8dec547ec19e0d4fdd95.jpg'),
 (36, 21, 'c1ea339b2a9588074287501236519d3e.jpg'),
 (37, 21, '388b1ab15c15d3fe30d4f6a765857dd2.jpg'),
 (38, 22, '415e477207cb2e132ab7e1eebf0d4dee.jpg'),
 (39, 22, '72f9b0083ab3dd06792332de9cc8cf61.jpg'),
 (40, 22, 'eddeb9a6673d4141692ba104980daa0e.jpg'),
-(41, 22, '7beccefee596f3b47cd78646d74ad2fa.jpg'),
 (42, 23, '379f00575518dac5663b282898dc7b86.jpg'),
 (43, 23, '97c1ee5ef8a3c56df6f07c8c54ae50cb.jpg'),
 (44, 23, '63535ca18f6811bb6c412b1f3999e260.jpg'),
@@ -161,10 +142,6 @@ INSERT INTO `gambar_animal` (`GambarID`, `AnimalID`, `NamaGambar`) VALUES
 (59, 29, '9a4a0279b26dcb4bec27d6e1f0177ba6.jpg'),
 (60, 29, '670fd879c5d0df51ea063c8e06ba7505.jpg'),
 (61, 29, 'f9e99d4bcbc3afcfd5dd651ec43b373f.jpg'),
-(62, 30, '9e4d2b089123d64b619b7d96e3a27365.jpg'),
-(63, 30, '8db43884e6dfa7b4d6a1a2b99f82a121.jpg'),
-(64, 30, '974c4969ae58a2f0d405e98916d881f7.jpg'),
-(65, 30, '297b079de6d3baedf40d498d77a907e6.jpg'),
 (66, 31, '3c3396b551a1acf0267de1ecb1d7a7d1.jpg'),
 (67, 31, 'a77c2f6132ae7b93bb2d07dae68aa702.jpg'),
 (68, 31, 'a28b88c86e589966f0a20fa9b24e38a9.jpg'),
@@ -201,14 +178,6 @@ CREATE TABLE `laporan_user` (
   `Gambarlaporan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `laporan_user`
---
-
-INSERT INTO `laporan_user` (`LaporanID`, `Username`, `Email`, `Jenislaporan`, `Isi`, `Tanggallaporan`, `Gambarlaporan`) VALUES
-(1, 'lr123', 'usamah.nardi@gmail.com', 1, 'aaaaaa', '2024-04-13', '8f2a6ba3ea8699ca04b5b69c500b564c.jpg'),
-(2, 'lr123', 'usamah.nardi@gmail.com', 3, 'vvvvv', '2024-04-13', '18eac9bbccf7843da20aa2be4f10c46e.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -227,8 +196,8 @@ CREATE TABLE `ras` (
 --
 
 INSERT INTO `ras` (`RasID`, `Namaras`, `Jenis`, `Deskripsi`) VALUES
-(1, 'Tidak Diketahui', 1, 'Tidak Diketahui'),
-(2, 'Tidak Diketahui', 2, 'Tidak Diketahui'),
+(1, 'Tidak Diketahui', 1, 'Tidak Diketahui (Anjing)'),
+(2, 'Tidak Diketahui ', 2, 'Tidak Diketahui (Kucing)'),
 (101, 'Afghan', 1, 'Afghan adalah anjing yang elegan dan anggun. Mereka memiliki bulu panjang dan anggun.'),
 (102, 'African Wild Dog', 1, 'African Wild Dog adalah anjing liar yang kuat dan tangguh. Mereka memiliki warna bulu yang unik dan garis-garis.'),
 (103, 'Airedale', 1, 'Airedale adalah anjing yang cerdas dan bersemangat. Mereka memiliki mantel tebal dan warna coklat.'),
@@ -339,7 +308,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`UserID`, `Username`, `Password`, `Namalengkap`, `Nomortlp`, `Email`, `Kota`, `Kecamatan`, `Alamatfull`) VALUES
 (1, 'admin', 'admin', 'Admin', '+628314067689', NULL, NULL, NULL, NULL),
-(11, 'lr123', '$2y$10$EeOJ7UK.IDd1tg5ImT63ce/1i9dB/Wj3nGQVMnH8Jt.EER3.LmBIK', 'Luthfi Ramadan', NULL, 'usamah.nardi@gmail.com', NULL, NULL, NULL);
+(11, 'lr123', '$2y$10$EeOJ7UK.IDd1tg5ImT63ce/1i9dB/Wj3nGQVMnH8Jt.EER3.LmBIK', 'Luthfi Ramadan', '+6283140656961', 'usamah.nardi@gmail.com', 'Jakarta Pusat', 'Johar Baru', 'aaa'),
+(12, 'pratama123', '$2y$10$pjzwciQHkGiRMWKA8RxqkOVDqP6kopUMH7jAm9oyOS5VaDCJzDlfO', 'Pratama Arbianto', NULL, 'pratama123@gmail.com', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -413,25 +383,25 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `adopsi`
 --
 ALTER TABLE `adopsi`
-  MODIFY `AdoptionID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `AdoptionID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `animal`
 --
 ALTER TABLE `animal`
-  MODIFY `AnimalID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `AnimalID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `gambar_animal`
 --
 ALTER TABLE `gambar_animal`
-  MODIFY `GambarID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `GambarID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `laporan_adopsi`
 --
 ALTER TABLE `laporan_adopsi`
-  MODIFY `LaporanID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `LaporanID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `laporan_user`
@@ -443,7 +413,7 @@ ALTER TABLE `laporan_user`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `UserID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Animal</title>
+    <title>AdoptMe</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="manifest" href="site.webmanifest"> -->
@@ -249,37 +249,30 @@
                                 Contact Us
                             </h3>
                             <ul class="address_line">
-                                <li>+555 0000 565</li>
-                                <li><a href="#">Demomail@gmail.Com</a></li>
-                                <li>700, Green Lane, New York, USA</li>
+                                <li>+62893232990</li>
+                                <li><a href="#">AdoptMe@company.com</a></li>
+                                <li>Daerah Khusus Jakarta</li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-xl-3  col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                                Our Servces
+                                Kategori Hewan
                             </h3>
                             <ul class="links">
-                                <li><a href="#">Pet Insurance</a></li>
-                                <li><a href="#">Pet surgeries </a></li>
-                                <li><a href="#">Pet Adoption</a></li>
-                                <li><a href="#">Dog Insurance</a></li>
-                                <li><a href="#">Dog Insurance</a></li>
+                                <li><a href="#">Anjing</a></li>
+                                <li><a href="#">Kucing</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-xl-3  col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                                Quick Link
+                                Link Yang Berguna
                             </h3>
                             <ul class="links">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Terms of Service</a></li>
-                                <li><a href="#">Login info</a></li>
-                                <li><a href="#">Knowledge Base</a></li>
+                                <li><a href="#">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -290,8 +283,7 @@
                                     <img src="img/logo.png" alt="">
                                 </a>
                             </div>
-                            <p class="address_text">239 E 5th St, New York 
-                                NY 10003, USA
+                            <p class="address_text">Daerah Khusus Jakarta
                             </p>
                             <div class="socail_links">
                                 <ul>
@@ -330,7 +322,7 @@
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
                             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> AdoptMe Co., Ltd. All Rights Reserved.  <i class="ti-heart" aria-hidden="true"></i>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                         </p>
                     </div>
@@ -345,7 +337,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="<?php echo base_url('assets/js/bootstrap.bundle.min.js')?>"></script>
-    <script src="<?php echo base_url('assets/js/js/bootstrap.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/bootstrap.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/index-main.js')?>"></script>
     <script src="<?php echo base_url('assets/js/jquery.slicknav.min.js')?>"></script>
 </body>

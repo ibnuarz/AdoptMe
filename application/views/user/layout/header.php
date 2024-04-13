@@ -72,7 +72,8 @@ https://templatemo.com/tm-571-hexashop
                                 <a href="#"><i class="fas fa-solid fa-user"></i></a>
                                 <ul>
                                     <li class="scroll-to-section"><a href="/" onclick="return false;">Halo , <?php echo $this->session->userdata('Namalengkap');?></a></li>
-                                    <li><a href=""><i class="fas fa-solid fa-address-card"></i> Profile</a></li>
+                                    <li><a href="<?php echo base_url('Main/dataProfile') ?>"><i class="fas fa-solid fa-address-card"></i> Profile</a></li>
+                                    <li><a href="<?php echo base_url('Main/dataHewanByUser') ?>"><i class="fas fa-solid fa-cat"></i><i class="fas fa-solid fa-dog"></i>Data Hewan Anda</a></li>
                                     <li>
                                         <a href="" href="" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
