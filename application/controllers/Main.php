@@ -180,7 +180,7 @@ class Main extends CI_Controller {
         $keyword = $this->input->post('keyword');
         $data['allAnimals'] = $this->Muser->searchAnimals($keyword);
         if (empty($data['allAnimals'])) {
-            $data['message'] = 'Maaf Yang Anda Cari Belum Tersedia. <br><i>Coba Untuk Menggunakan Spesifik Keywords. klik tombol reset untuk kembali</i>';
+            $data['message'] = 'Maaf Yang Anda Cari Belum Tersedia / Sudah Teradopsi / Proses Adopsi. <br><i>Coba Untuk Menggunakan Spesifik Keywords. klik tombol reset untuk kembali</i>';
         }
         $this->load->view('user/layout/header');
         $this->load->view('user/listhewan', $data);

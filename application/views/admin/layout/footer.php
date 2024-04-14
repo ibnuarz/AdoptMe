@@ -395,6 +395,8 @@
     <script src="<?php echo base_url('assets/vendor/datatables/jquery.dataTables.min.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/demo/datatables-demo.js')?>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/0.4.0/baguetteBox.min.js" integrity="sha512-Bzt6YnzrGlejx/5+wHyTpy1rWbIiphzr59iJ1lfsGaZFS109lRlHufVjl/VIVl/tlB9mNeaHv1JQJVCSZOOdVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -494,6 +496,8 @@
     }
     
     </script>
+
+    
 </body>
 
 </html>

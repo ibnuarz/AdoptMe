@@ -175,6 +175,7 @@ class Muser extends CI_Model{
         $this->db->join('ras', 'animal.RasID = ras.RasID');
         $this->db->join('user', 'animal.UserID = user.UserID');
         $this->db->where("(animal.AnimalID LIKE '%$keyword%' OR animal.Animalname LIKE '%$keyword%' OR animal.Age LIKE '%$keyword%' OR animal.Deskripsi LIKE '%$keyword%' OR ras.RasID LIKE '%$keyword%' OR ras.Namaras LIKE '%$keyword%' OR ras.Jenis LIKE '%$keyword%')");
+        $this->db->where('animal.Status', 1); 
         $query = $this->db->get();
         $animals = $query->result();
         

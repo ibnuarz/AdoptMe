@@ -594,4 +594,246 @@ class Adminc extends CI_Controller {
         header('Content-Type: application/json');
         echo json_encode($response);
     }
+
+    public function laporanBug() {
+        if(empty($this->session->userdata('Username'))) {
+            redirect('Admin/adminc');
+        }
+    
+        $data['user_data'] = $this->Madmin->getAllUser();
+        $data['ras_data'] = $this->Madmin->getAllras();
+        $animal_data = $this->Madmin->getAllAnimal();
+        foreach ($animal_data as $animal) {
+            $animal->gambar = $this->Madmin->getAnimalImages($animal->AnimalID);
+        }
+        $data['animal_data'] = $animal_data;
+        $adoption_data = $this->Madmin->getAllAdoptionsWithImages();
+        $grouped_adoptions = [];
+        foreach ($adoption_data as $adoption) {
+            if (!isset($grouped_adoptions[$adoption->AnimalID])) {
+                $grouped_adoptions[$adoption->AnimalID] = $adoption;
+                $grouped_adoptions[$adoption->AnimalID]->images = [];
+            }
+            $grouped_adoptions[$adoption->AnimalID]->images[] = $adoption->NamaGambar;
+        }
+        $data['adoption_data'] = $grouped_adoptions;
+        $data['laporan_data'] = $this->Madmin->getLaporanByJenis(1);
+        $this->load->view('admin/layout/header');
+        $this->load->view('admin/laporan_bug', $data);
+        $this->load->view('admin/layout/footer');
+    }
+    
+    public function laporanSaran() {
+        if(empty($this->session->userdata('Username'))) {
+            redirect('Admin/adminc');
+        }
+    
+        $data['user_data'] = $this->Madmin->getAllUser();
+        $data['ras_data'] = $this->Madmin->getAllras();
+        $animal_data = $this->Madmin->getAllAnimal();
+        foreach ($animal_data as $animal) {
+            $animal->gambar = $this->Madmin->getAnimalImages($animal->AnimalID);
+        }
+        $data['animal_data'] = $animal_data;
+        $adoption_data = $this->Madmin->getAllAdoptionsWithImages();
+        $grouped_adoptions = [];
+        foreach ($adoption_data as $adoption) {
+            if (!isset($grouped_adoptions[$adoption->AnimalID])) {
+                $grouped_adoptions[$adoption->AnimalID] = $adoption;
+                $grouped_adoptions[$adoption->AnimalID]->images = [];
+            }
+            $grouped_adoptions[$adoption->AnimalID]->images[] = $adoption->NamaGambar;
+        }
+        $data['adoption_data'] = $grouped_adoptions;
+        $data['laporan_data'] = $this->Madmin->getLaporanByJenis(2);
+        $this->load->view('admin/layout/header');
+        $this->load->view('admin/laporan_saran', $data);
+        $this->load->view('admin/layout/footer');
+    }
+
+    public function detectBug() {
+        if(empty($this->session->userdata('Username'))) {
+            redirect('Admin/adminc');
+        }
+        $data['user_data'] = $this->Madmin->getAllUser();
+        $data['ras_data'] = $this->Madmin->getAllras();
+        $animal_data = $this->Madmin->getAllAnimal();
+        foreach ($animal_data as $animal) {
+            $animal->gambar = $this->Madmin->getAnimalImages($animal->AnimalID);
+        }
+        $data['animal_data'] = $animal_data;
+        $adoption_data = $this->Madmin->getAllAdoptionsWithImages();
+        $grouped_adoptions = [];
+        foreach ($adoption_data as $adoption) {
+            if (!isset($grouped_adoptions[$adoption->AnimalID])) {
+                $grouped_adoptions[$adoption->AnimalID] = $adoption;
+                $grouped_adoptions[$adoption->AnimalID]->images = [];
+            }
+            $grouped_adoptions[$adoption->AnimalID]->images[] = $adoption->NamaGambar;
+        }
+        $data['adoption_data'] = $grouped_adoptions;
+        $data['laporan_data'] = $this->Madmin->getLaporanByJenis(3);
+        $this->load->view('admin/layout/header');
+        $this->load->view('admin/laporan_fiturras', $data);
+        $this->load->view('admin/layout/footer');
+    }
+    
+    public function laporanLain() {
+        if(empty($this->session->userdata('Username'))) {
+            redirect('Admin/adminc');
+        }
+    
+        $data['user_data'] = $this->Madmin->getAllUser();
+        $data['ras_data'] = $this->Madmin->getAllras();
+        $animal_data = $this->Madmin->getAllAnimal();
+        foreach ($animal_data as $animal) {
+            $animal->gambar = $this->Madmin->getAnimalImages($animal->AnimalID);
+        }
+        $data['animal_data'] = $animal_data;
+        $adoption_data = $this->Madmin->getAllAdoptionsWithImages();
+        $grouped_adoptions = [];
+        foreach ($adoption_data as $adoption) {
+            if (!isset($grouped_adoptions[$adoption->AnimalID])) {
+                $grouped_adoptions[$adoption->AnimalID] = $adoption;
+                $grouped_adoptions[$adoption->AnimalID]->images = [];
+            }
+            $grouped_adoptions[$adoption->AnimalID]->images[] = $adoption->NamaGambar;
+        }
+        $data['adoption_data'] = $grouped_adoptions;
+        $data['laporan_data'] = $this->Madmin->getLaporanByJenis(4);
+        $this->load->view('admin/layout/header');
+        $this->load->view('admin/laporan_lain', $data);
+        $this->load->view('admin/layout/footer');
+    }
+
+    public function delete_laporan_fiturras() {
+        $laporanID = $this->input->post('laporanID');
+        $this->Madmin->deleteLaporan($laporanID);
+        $laporan = $this->Madmin->getLaporanByID($laporanID);
+        $gambarName = $laporan->Gambarlaporan;
+        $gambarPath = FCPATH . 'assets/img/laporan/' . $gambarName;
+        if (file_exists($gambarPath)) {
+            unlink($gambarPath);
+        }
+        redirect('Admin/adminc/detectBug');
+    }
+    public function delete_laporan_bug() {
+        $laporanID = $this->input->post('laporanID');
+        $this->Madmin->deleteLaporan($laporanID);
+        $laporan = $this->Madmin->getLaporanByID($laporanID);
+        $gambarName = $laporan->Gambarlaporan;
+        $gambarPath = FCPATH . 'assets/img/laporan/' . $gambarName;
+        if (file_exists($gambarPath)) {
+            unlink($gambarPath);
+        }
+        redirect('Admin/adminc/laporanBug');
+    }
+    public function delete_laporan_lain() {
+        $laporanID = $this->input->post('laporanID');
+        $this->Madmin->deleteLaporan($laporanID);
+        $laporan = $this->Madmin->getLaporanByID($laporanID);
+        $gambarName = $laporan->Gambarlaporan;
+        $gambarPath = FCPATH . 'assets/img/laporan/' . $gambarName;
+        if (file_exists($gambarPath)) {
+            unlink($gambarPath);
+        }
+        redirect('Admin/adminc/laporanLain');
+    }
+    public function delete_laporan_saran() {
+        $laporanID = $this->input->post('laporanID');
+        $this->Madmin->deleteLaporan($laporanID);
+        $laporan = $this->Madmin->getLaporanByID($laporanID);
+        $gambarName = $laporan->Gambarlaporan;
+        $gambarPath = FCPATH . 'assets/img/laporan/' . $gambarName;
+        if (file_exists($gambarPath)) {
+            unlink($gambarPath);
+        }
+        redirect('Admin/adminc/laporanSaran');
+    }
+
+    public function laporanBulanan() {
+        if(empty($this->session->userdata('Username'))) {
+            redirect('Admin/adminc');
+        }
+    
+        $data['user_data'] = $this->Madmin->getAllUser();
+        $data['ras_data'] = $this->Madmin->getAllras();
+        $animal_data = $this->Madmin->getAllAnimal();
+        foreach ($animal_data as $animal) {
+            $animal->gambar = $this->Madmin->getAnimalImages($animal->AnimalID);
+        }
+        $data['animal_data'] = $animal_data;
+        $adoption_data = $this->Madmin->getAllAdoptionsWithImages();
+        $grouped_adoptions = [];
+        foreach ($adoption_data as $adoption) {
+            if (!isset($grouped_adoptions[$adoption->AnimalID])) {
+                $grouped_adoptions[$adoption->AnimalID] = $adoption;
+                $grouped_adoptions[$adoption->AnimalID]->images = [];
+            }
+            $grouped_adoptions[$adoption->AnimalID]->images[] = $adoption->NamaGambar;
+        }
+        $data['adoption_data'] = $grouped_adoptions;
+        $data['laporan_data'] = $this->Madmin->getLaporanBulananByAdoptionID();
+        $this->load->view('admin/layout/header');
+        $this->load->view('admin/laporan_bulanan', $data);
+        $this->load->view('admin/layout/footer');
+    }
+
+    public function detailLaporanBulanan($adoptionID) {
+        if(empty($this->session->userdata('Username'))) {
+            redirect('Admin/adminc');
+        }
+        $data['user_data'] = $this->Madmin->getAllUser();
+        $data['ras_data'] = $this->Madmin->getAllras();
+        $animal_data = $this->Madmin->getAllAnimal();
+        foreach ($animal_data as $animal) {
+            $animal->gambar = $this->Madmin->getAnimalImages($animal->AnimalID);
+        }
+        $data['animal_data'] = $animal_data;
+        $adoption_data = $this->Madmin->getAllAdoptionsWithImages();
+        $grouped_adoptions = [];
+        foreach ($adoption_data as $adoption) {
+            if (!isset($grouped_adoptions[$adoption->AnimalID])) {
+                $grouped_adoptions[$adoption->AnimalID] = $adoption;
+                $grouped_adoptions[$adoption->AnimalID]->images = [];
+            }
+            $grouped_adoptions[$adoption->AnimalID]->images[] = $adoption->NamaGambar;
+        }
+        $data['adoption_data'] = $grouped_adoptions;
+        $data['laporan_data'] = $this->Madmin->getLaporanKendalaByAdoptionID();
+        $data['detail_laporan'] = $this->Madmin->getLaporanByAdoptionID($adoptionID);
+        $this->load->view('admin/layout/header');
+        $this->load->view('admin/detail_laporan', $data);
+        $this->load->view('admin/layout/footer');
+    }
+
+    public function laporanKendala() {
+        if(empty($this->session->userdata('Username'))) {
+            redirect('Admin/adminc');
+        }
+    
+        $data['user_data'] = $this->Madmin->getAllUser();
+        $data['ras_data'] = $this->Madmin->getAllras();
+        $animal_data = $this->Madmin->getAllAnimal();
+        foreach ($animal_data as $animal) {
+            $animal->gambar = $this->Madmin->getAnimalImages($animal->AnimalID);
+        }
+        $data['animal_data'] = $animal_data;
+        $adoption_data = $this->Madmin->getAllAdoptionsWithImages();
+        $grouped_adoptions = [];
+        foreach ($adoption_data as $adoption) {
+            if (!isset($grouped_adoptions[$adoption->AnimalID])) {
+                $grouped_adoptions[$adoption->AnimalID] = $adoption;
+                $grouped_adoptions[$adoption->AnimalID]->images = [];
+            }
+            $grouped_adoptions[$adoption->AnimalID]->images[] = $adoption->NamaGambar;
+        }
+        $data['adoption_data'] = $grouped_adoptions;
+        $data['laporan_data'] = $this->Madmin->getLaporanKendalaByAdoptionID();
+        $this->load->view('admin/layout/header');
+        $this->load->view('admin/laporan_kendala', $data);
+        $this->load->view('admin/layout/footer');
+    }
+
+
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2024 at 10:04 PM
+-- Generation Time: Apr 14, 2024 at 07:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -308,8 +308,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`UserID`, `Username`, `Password`, `Namalengkap`, `Nomortlp`, `Email`, `Kota`, `Kecamatan`, `Alamatfull`) VALUES
 (1, 'admin', 'admin', 'Admin', '+628314067689', NULL, NULL, NULL, NULL),
-(11, 'lr123', '$2y$10$EeOJ7UK.IDd1tg5ImT63ce/1i9dB/Wj3nGQVMnH8Jt.EER3.LmBIK', 'Luthfi Ramadan', '+6283140656961', 'usamah.nardi@gmail.com', 'Jakarta Pusat', 'Johar Baru', 'aaa'),
-(12, 'pratama123', '$2y$10$pjzwciQHkGiRMWKA8RxqkOVDqP6kopUMH7jAm9oyOS5VaDCJzDlfO', 'Pratama Arbianto', NULL, 'pratama123@gmail.com', NULL, NULL, NULL);
+(12, 'pratama123', '$2y$10$pjzwciQHkGiRMWKA8RxqkOVDqP6kopUMH7jAm9oyOS5VaDCJzDlfO', 'Pratama Arbianto', '+628314189', 'pratama123@gmail.com', 'Jakarta Utara', 'Kapuk Muara', 'Jakarta Utara');
 
 --
 -- Indexes for dumped tables
@@ -383,7 +382,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `adopsi`
 --
 ALTER TABLE `adopsi`
-  MODIFY `AdoptionID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `AdoptionID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `animal`
@@ -401,13 +400,13 @@ ALTER TABLE `gambar_animal`
 -- AUTO_INCREMENT for table `laporan_adopsi`
 --
 ALTER TABLE `laporan_adopsi`
-  MODIFY `LaporanID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `LaporanID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `laporan_user`
 --
 ALTER TABLE `laporan_user`
-  MODIFY `LaporanID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `LaporanID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `user`

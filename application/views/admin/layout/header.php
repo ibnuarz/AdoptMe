@@ -72,19 +72,49 @@
                     <span>Data dan Verifikasi Adopsi</span></a>
             </li>
             <hr class="sidebar-divider">
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#fiturras"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-solid fa-bars"></i>
                     <span>Fitur Deteksi Ras</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="fiturras" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Menu : </h6>
                         <a class="collapse-item" href="<?php echo base_url('Admin/adminc/detectKucing')?>">Ras Kucing</a>
                         <a class="collapse-item" href="<?php echo base_url('Admin/adminc/detectAnjing')?>">Ras Anjing</a>
-                        <a class="collapse-item" href="<?php echo base_url('Admin/adminc/bugdetect')?>">Laporan Error / Bug</a>
+                        <a class="collapse-item" href="<?php echo base_url('Admin/adminc/detectBug')?>">Laporan Error / Bug</a>
+                    </div>
+                </div>
+            </li>
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#laporanuser"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-solid fa-bars"></i>
+                    <span>Laporan From User</span>
+                </a>
+                <div id="laporanuser" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Menu : </h6>
+                        <a class="collapse-item" href="<?php echo base_url('Admin/adminc/laporanBug')?>">Laporan Bug Aplikasi</a>
+                        <a class="collapse-item" href="<?php echo base_url('Admin/adminc/laporanSaran')?>">Laporan Saran dan Kritik</a>
+                        <a class="collapse-item" href="<?php echo base_url('Admin/adminc/laporanLain')?>">Laporan Lainnya</a>
+                    </div>
+                </div>
+            </li>
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#laporanadopsi"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-solid fa-bars"></i>
+                    <span>Laporan Adopsi Bulanan</span>
+                </a>
+                <div id="laporanadopsi" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Menu : </h6>
+                        <a class="collapse-item" href="<?php echo base_url('Admin/adminc/laporanBulanan')?>">Laporan Bulanan</a>
+                        <a class="collapse-item" href="<?php echo base_url('Admin/adminc/laporanKendala')?>">Laporan Kendala</a>
                     </div>
                 </div>
             </li>

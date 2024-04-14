@@ -164,4 +164,51 @@ class Madmin extends CI_Model{
     $this->db->where('Status', 3);
     return $this->db->count_all_results('animal');
     }
+
+    public function getLaporanByJenis($jenis) {
+        return $this->db
+                    ->where('Jenislaporan', $jenis)
+                    ->get('laporan_user')
+                    ->result();
+    }
+    public function deleteLaporan($laporanID) {
+            $this->db->where('LaporanID', $laporanID);
+            $this->db->delete('laporan_user');
+    }
+    public function getLaporanByID($laporanID) {
+            $query = $this->db->get_where('laporan_user', array('LaporanID' => $laporanID));
+            return $query->row();
+    }
+
+    public function getLaporanByAdoptionID($adoptionID) {
+        $this->db->where('AdoptionID', $adoptionID);
+        $query = $this->db->get('laporan_adopsi');
+        return $query->result();
+    }
+
+    public function getLaporanBulananByAdoptionID() {
+        $this->db->select('laporan_adopsi.*, adopsi.AdoptionID, user.Namalengkap');
+        $this->db->from('laporan_adopsi');
+        $this->db->join('adopsi', 'adopsi.AdoptionID = laporan_adopsi.AdoptionID');
+        $this->db->join('user', 'user.UserID = adopsi.UserID');
+        $this->db->order_by('laporan_adopsi.AdoptionID', 'asc');
+        $query = $this->db->get();
+        $results = $query->result();
+        $grouped_data = [];
+        foreach ($results as $result) {
+            $grouped_data[$result->AdoptionID][] = $result;
+        }
+        return $grouped_data;
+    }
+    
+
+    public function getLaporanKendalaByAdoptionID() {
+        $this->db->select('laporan_adopsi.*');
+        $this->db->from('laporan_adopsi');
+        $this->db->join('adopsi', 'adopsi.AdoptionID = laporan_adopsi.AdoptionID');
+        $this->db->where('laporan_adopsi.Urgensi', 2);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 }
