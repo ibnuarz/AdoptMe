@@ -53,7 +53,15 @@
                                             <tr>
                                                 <td><?php echo $adopsi->Animalname; ?></td>
                                                 <td><?php echo $adopsi->Age; ?> Bulan</td>
-                                                <td><?php echo $adopsi->Jenis; ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($adopsi->Jenis == 1) {
+                                                        echo 'Anjing';
+                                                    } else {
+                                                        echo 'Kucing';
+                                                    }
+                                                    ?>
+                                                </td>
                                                 <td><?php echo $adopsi->Namaras; ?></td>
                                                 <td><?php echo $adopsi->Deskripsi; ?></td>
                                                 <td><?php echo $adopsi->Adoptiondate; ?></td>

@@ -117,8 +117,9 @@
 										<input type="hidden" name="animalID" value="<?php echo $animal->AnimalID; ?>">
 									</div>
 									<div class="form-group">
-										<label for="age">Usia : <?php echo $animal->Age; ?> Bulan</label>
+										<label for="age">Umur : <?php echo $animal->Age; ?> Bulan</label>
 										<input type="hidden" class="form-control" id="age" name="age" value="<?php echo $animal->Age; ?>">
+										<p class="text-danger"><small><i>*jika umur yang tertera adalah 0 maka umur hewan tidak diketahui</i></small></p>
 									</div>
 									<div class="form-group">
 										<label for="deskripsi">Deskripsi : </label>

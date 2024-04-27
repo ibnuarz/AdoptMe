@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4 offset-md-4 text-center">
-                <h6 class="text-danger">Silahkan Isi Data Profile Anda Dengan Lengkap</h6>
+                <h6 class="text-danger">Silahkan Isi Data Anda Dengan Lengkap</h6>
             </div>
         </div>
         <div class="row">
@@ -48,7 +48,7 @@
                         <label for="alamatfull">Alamat Lengkap :</label>
                         <textarea class="form-control" id="alamatfull" name="alamatfull" rows="4" required><?php echo $user->Alamatfull; ?></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Update Profil</button>
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
                 </form>
             </div>
         </div>

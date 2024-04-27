@@ -14,7 +14,7 @@
                                 <h4 style="color:#fff!important;">AdoptME</h4>
                                 <span>Your Home, My Home</span>
                                 <div class="main-border-button">
-                                    <a href="#">Adopsi Kami Sekarang</a>
+                                    <a href="<?php echo base_url('Main/listHewan/1') ?>">Adopsi Kami Sekarang</a>
                                 </div>
                             </div>
                             <img src="<?php echo base_url('assets/img/banner/dog.png');?>" alt="">
@@ -28,7 +28,7 @@
                                 <h4 style="color:#fff!important;">AdoptME</h4>
                                 <span>Your Home, My Home</span>
                                 <div class="main-border-button">
-                                    <a href="#">Adopsi Kami Sekarang</a>
+                                    <a href="<?php echo base_url('Main/listHewan/1') ?>">Adopsi Kami Sekarang</a>
                                 </div>
                             </div>
                             <img src="<?php echo base_url('assets/img/about/pet_care.png')?>" alt="">
@@ -42,7 +42,7 @@
                                 <h4 style="color:#fff!important;">AdoptME</h4>
                                 <span>Your Home, My Home</span>
                                 <div class="main-border-button">
-                                    <a href="#">Adopsi Kami Sekarang</a>
+                                    <a href="<?php echo base_url('Main/listHewan/1') ?>">Adopsi Kami Sekarang</a>
                                 </div>
                             </div>
                             <img src="<?php echo base_url('assets/img/banner/dog.png');?>" alt="">

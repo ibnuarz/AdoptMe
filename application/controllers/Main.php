@@ -60,28 +60,38 @@ class Main extends CI_Controller {
 
     public function processLogin()
     {
-    if ($this->input->post()) {
-        $this->form_validation->set_rules('usernameuser', 'Username', 'required');
-        $this->form_validation->set_rules('passuser', 'Password', 'required');
-        if ($this->form_validation->run() == true) {
-            $username = $this->input->post('usernameuser');
-            $password = $this->input->post('passuser');
-            $user = $this->Muser->getUserByUsername($username);
-            if ($user) {
-                if (password_verify($password, $user->Password)) {
-                    $this->setUserSession($user);
-                    redirect('main/dashboard');
+        if ($this->input->post()) {
+            $this->form_validation->set_rules('usernameuser', 'Username', 'required');
+            $this->form_validation->set_rules('passuser', 'Password', 'required');
+            if ($this->form_validation->run() == true) {
+                $username = $this->input->post('usernameuser');
+                $password = $this->input->post('passuser');
+                $user = $this->Muser->getUserByUsername($username);
+                if ($user) {
+                    if (password_verify($password, $user->Password)) {
+                        $this->setUserSession($user);
+                        redirect('main/checkProfile');
+                    } else {
+                        $this->session->set_flashdata('error_message', 'Password Salah!');
+                    }
                 } else {
-                    $this->session->set_flashdata('error_message', 'Password Salah!');
+                    $this->session->set_flashdata('error_message', 'Username tidak ditemukan!');
                 }
-            } else {
-                $this->session->set_flashdata('error_message', 'Username tidak ditemukan!');
             }
         }
+        redirect('main/login');
     }
-    redirect('main/login');
+    
+    public function checkProfile()
+    {
+        $user = $this->Muser->getUserByUsername($this->session->userdata('Username'));
+        if ($user->Kota == NULL || $user->Kecamatan == NULL || $user->Alamatfull == NULL) {
+            redirect('Main/dataProfile');
+        } else {
+            redirect('main/dashboard');
+        }
     }
-
+    
     private function setUserSession($user)
     {
     $data_session = array(

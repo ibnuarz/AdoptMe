@@ -32,7 +32,7 @@
                         <div class="col-lg-12">
                             <label>Jenis Laporan Anda (wajib pilih): </label>
                             <fieldset>
-                                <select class="form-control" id="jenis_laporan" name="jenis_laporan" required>
+                                <select class="form-control" id="jenis_laporan" name="jenis_laporan" style="border: 1px solid #31C48D!important;" required>
                                     <option value="">Pilih Jenis Laporan</option>
                                     <option value="1">Bug/Error</option>
                                     <option value="2">Saran dan Kritik</option>
