@@ -20,7 +20,7 @@
         <div class="row m-3">
 			<div class="col-lg-4"></div>
 			<div class="col-lg-4">
-				<form class="form-inline" id="search" action="<?php echo base_url('main/searchAnimals'); ?>" method="post">
+				<form class="form-inline" id="search" action="<?php echo base_url('main/cariHewan'); ?>" method="get">
 					<div class="input-group">
 						<input type="text" class="form-control" name="keyword" placeholder="Cari hewan...">
 						<div class="input-group-append">

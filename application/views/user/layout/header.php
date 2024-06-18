@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/user/css/font-awesome.css')?>">
 
     <link rel="stylesheet" href="<?php echo base_url('assets/user/css/user-main.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/user/css/user-chatbot.css')?>">
 
     <link rel="stylesheet" href="<?php echo base_url('assets/user/css/costum.css')?>">
 
@@ -26,6 +27,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/user/css/lightbox.css')?>">
 
     <link rel="stylesheet" href="<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css');?>">
+    
 
     <!--
 

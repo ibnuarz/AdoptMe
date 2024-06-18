@@ -169,19 +169,62 @@ class Muser extends CI_Model{
         $this->db->delete('animal');
     }
 
-    public function searchAnimals($keyword) {
-        $this->db->select('animal.AnimalID, animal.Animalname, animal.Age, animal.Deskripsi, animal.Status, ras.RasID, ras.Namaras, ras.Jenis, user.UserID, user.Namalengkap');
-        $this->db->from('animal');
-        $this->db->join('ras', 'animal.RasID = ras.RasID');
-        $this->db->join('user', 'animal.UserID = user.UserID');
-        $this->db->where("(animal.AnimalID LIKE '%$keyword%' OR animal.Animalname LIKE '%$keyword%' OR animal.Age LIKE '%$keyword%' OR animal.Deskripsi LIKE '%$keyword%' OR ras.RasID LIKE '%$keyword%' OR ras.Namaras LIKE '%$keyword%' OR ras.Jenis LIKE '%$keyword%')");
-        $this->db->where('animal.Status', 1); 
-        $query = $this->db->get();
-        $animals = $query->result();
-        
-        foreach ($animals as $animal) {
-            $animal->images = $this->getAnimalImages($animal->AnimalID);
+    public function searchAnimals($keyword)
+    {
+        $keywords = explode(' ', $keyword);
+        if ($this->dataAvailable($keywords)) {
+            $this->db->select('animal.AnimalID, animal.Animalname, animal.Age, animal.Deskripsi, animal.Status, ras.RasID, ras.Namaras, ras.Jenis, user.UserID, user.Namalengkap');
+            $this->db->from('animal');
+            $this->db->join('ras', 'animal.RasID = ras.RasID');
+            $this->db->join('user', 'animal.UserID = user.UserID');
+            $this->db->where('animal.Status', 1);
+            foreach ($keywords as $key => $keyword) {
+                if ($key === 0) {
+                    $this->db->group_start();
+                    $this->db->like('animal.Animalname', $keyword);
+                    $this->db->or_like('animal.Deskripsi', $keyword);
+                    $this->db->or_like('animal.Age', $keyword);
+                    $this->db->or_like('ras.RasID', $keyword);
+                    $this->db->or_like('ras.Namaras', $keyword);
+                    $this->db->or_like('ras.Jenis', $keyword);
+                    $this->db->group_end();
+                } else {
+                    $this->db->group_start();
+                    $this->db->or_like('animal.Animalname', $keyword);
+                    $this->db->or_like('animal.Deskripsi', $keyword);
+                    $this->db->or_like('animal.Age', $keyword);
+                    $this->db->or_like('ras.RasID', $keyword);
+                    $this->db->or_like('ras.Namaras', $keyword);
+                    $this->db->or_like('ras.Jenis', $keyword);
+                    $this->db->group_end();
+                }
+            }
+            $query = $this->db->get();
+            $animals = $query->result();
+
+            foreach ($animals as $animal) {
+                $animal->images = $this->getAnimalImages($animal->AnimalID);
+            }
+            return $animals;
+        } else {
+            return array();
         }
-        return $animals;
     }
+
+    private function dataAvailable($keywords)
+    {
+        $search_query = implode(' ', $keywords);
+        $sql = "SELECT COUNT(*) as count FROM animal 
+                JOIN ras ON animal.RasID = ras.RasID 
+                WHERE animal.Status = 1 AND (
+                    animal.Animalname LIKE '%$search_query%' OR
+                    animal.Deskripsi LIKE '%$search_query%' OR
+                    ras.Namaras LIKE '%$search_query%' OR
+                    ras.Jenis LIKE '%$search_query%'
+                )";
+        $query = $this->db->query($sql);
+        $result = $query->row();
+        return ($result->count > 0);
+    }
+
 }

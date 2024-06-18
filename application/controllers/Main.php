@@ -105,7 +105,11 @@ class Main extends CI_Controller {
 
     public function logout(){
 		$this->session->sess_destroy();
-		redirect('main/index');
+        echo '<script>';
+        echo 'localStorage.clear();';
+        echo 'sessionStorage.clear();';
+        echo 'window.location.href = "'.base_url('main/index').'";';
+        echo '</script>';
 	}
 
     public function dashboard(){
@@ -186,8 +190,9 @@ class Main extends CI_Controller {
         $this->load->view('user/layout/footer');
     }
 
-    public function searchAnimals() {
-        $keyword = $this->input->post('keyword');
+    public function cariHewan() {
+        $keyword = $this->input->get('keyword');
+        $keywords = explode(' ', $keyword);
         $data['allAnimals'] = $this->Muser->searchAnimals($keyword);
         if (empty($data['allAnimals'])) {
             $data['message'] = 'Maaf Yang Anda Cari Belum Tersedia / Sudah Teradopsi / Proses Adopsi. <br><i>Coba Untuk Menggunakan Spesifik Keywords. klik tombol reset untuk kembali</i>';
@@ -195,6 +200,21 @@ class Main extends CI_Controller {
         $this->load->view('user/layout/header');
         $this->load->view('user/listhewan', $data);
         $this->load->view('user/layout/footer');
+    }
+
+    public function cariHewanChatBot() {
+        $keyword = $this->input->get('keyword');
+        $keywords = explode(' ', $keyword);
+        $allAnimals = $this->Muser->searchAnimals($keyword);
+        if (empty($allAnimals)) {
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode([]));
+            return;
+        }
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($allAnimals));
     }
 
     public function riwayatAdopsi()

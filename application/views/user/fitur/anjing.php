@@ -129,7 +129,8 @@
 
         fetch('https://predictdog-jw2zdtsf7a-et.a.run.app', {
             method: 'POST',
-            body: formData
+            body: formData,
+            timeout: 10000 
         })
         .then(response => response.json())
         .then(data => {

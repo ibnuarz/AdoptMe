@@ -1,3 +1,6 @@
+    <button type="button" class="btn btn-secondary fixed-chat-button" data-toggle="modal" data-target="#chatModal">
+        <i class="fas fa-comment"></i> Pesan
+    </button>
 
     <!-- ***** Footer Start ***** -->
     <footer>
@@ -71,13 +74,41 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- Modal Chat -->
+    <div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="chatModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="chatModalLabel">Chat with AdoptMe Bot</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" id="chat-box">
+            <div class="bot-message chat-message"><strong>Bot: </strong>Halo Adopters! Ada yang bisa saya bantu?</div>
+        </div>
+        <div class="modal-footer">
+        <div class="input-group">
+            <input type="text" class="form-control" id="user-input" placeholder="Tulis pesan...">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" onclick="sendMessage()">Kirim</button>
+            </div>
+        </div>
+        <span id="typing-indicator" style="display: none;">Mengetik...</span>
+        </div>
+        </div>
+    </div>
+    </div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<!-- Bootstrap -->
 <script src="<?php echo base_url('assets/user/js/popper.js')?>"></script>
 <script src="<?php echo base_url('assets/user/js/bootstrap.min.js')?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="<?php echo base_url('assets/user/js/chatbot-user.js')?>"></script>
+
+
 <script>
 $(document).ready(function() {
     $(document).on("click", ".open-modal-laporan", function () {

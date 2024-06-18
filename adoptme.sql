@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2024 at 07:34 PM
+-- Generation Time: Apr 29, 2024 at 07:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -78,19 +78,18 @@ CREATE TABLE `animal` (
 --
 
 INSERT INTO `animal` (`AnimalID`, `Animalname`, `Age`, `Deskripsi`, `Status`, `UserID`, `RasID`) VALUES
-(18, 'Kucing2', 1, 'Kucing2', 1, 1, 201),
-(19, 'Kucing3', 0, 'Kucing3333333', 1, 1, 202),
-(20, 'Kucing4', 1, 'Kucing4', 1, 1, 205),
-(21, 'kucing5', 1, 'kucing5', 1, 1, 215),
-(22, 'Kucing6', 1, 'Kucing6', 1, 1, 206),
-(23, 'kucing7', 0, 'kucing7', 1, 1, 212),
-(24, 'Anjing1', 1, 'Anjing1', 1, 1, 116),
-(25, 'Anjing2', 2, 'Anjing2', 1, 1, 118),
-(26, 'Anjing3', 2, 'Anjing3', 1, 1, 111),
-(27, 'anjing4', 2, 'anjing4', 1, 1, 110),
-(28, 'anjing5', 2, 'anjing5', 1, 1, 1),
-(29, 'anjing6', 1, 'anjing6', 1, 1, 111),
-(31, 'Tidak Diketahui', 2, 'Temuan Kucing Jakarta2', 1, 1, 215);
+(18, 'Kucing Abyssinian', 1, 'Abyssinian', 1, 1, 201),
+(19, 'Kucing Bengal', 0, 'Bengal', 1, 1, 204),
+(20, 'Kucing Birman', 1, 'Kucing Birman', 1, 1, 205),
+(21, 'Kucing Tuxedo', 1, 'Tuxedo', 1, 1, 215),
+(22, 'Kucing Bombay', 1, 'Bombay', 1, 1, 206),
+(23, 'Kucing Russian Blue', 0, 'Russian Blue', 1, 1, 212),
+(24, 'Anjing Dalmation', 1, 'Dalmation', 1, 1, 132),
+(25, 'Anjing Boxer', 2, 'Boxer', 1, 1, 118),
+(26, 'Anjing Greyhound', 2, 'Greyhound', 1, 1, 142),
+(27, 'Anjing Borzoi', 2, 'Borzoi', 1, 1, 116),
+(38, 'Anjing Labrador', 12, 'Labrador', 1, 1, 149),
+(39, 'Anjing Husky', 2, 'Husky', 1, 1, 168);
 
 -- --------------------------------------------------------
 
@@ -111,41 +110,33 @@ CREATE TABLE `gambar_animal` (
 INSERT INTO `gambar_animal` (`GambarID`, `AnimalID`, `NamaGambar`) VALUES
 (23, 18, '2f8820bb74e19f2aa1490540ad53a46c.jpg'),
 (24, 18, 'ab5c4236eae39e45f3b07b46cb968a57.jpg'),
-(26, 19, 'f79be6086b04408fe2ac7af5b46727b3.jpg'),
-(27, 19, '4a3acc945c8d2c52b2d39a22fd53dc03.jpg'),
-(28, 19, 'e0046130dc4522f8c0575c8c519a32b7.jpg'),
 (30, 20, '00ea2a8564353100f6074795874b35a4.jpg'),
 (31, 20, '3d36a2dadc0e3cf3a58d258df7c3f500.jpg'),
-(35, 21, 'f8046372adff8dec547ec19e0d4fdd95.jpg'),
-(36, 21, 'c1ea339b2a9588074287501236519d3e.jpg'),
-(37, 21, '388b1ab15c15d3fe30d4f6a765857dd2.jpg'),
-(38, 22, '415e477207cb2e132ab7e1eebf0d4dee.jpg'),
-(39, 22, '72f9b0083ab3dd06792332de9cc8cf61.jpg'),
-(40, 22, 'eddeb9a6673d4141692ba104980daa0e.jpg'),
-(42, 23, '379f00575518dac5663b282898dc7b86.jpg'),
-(43, 23, '97c1ee5ef8a3c56df6f07c8c54ae50cb.jpg'),
-(44, 23, '63535ca18f6811bb6c412b1f3999e260.jpg'),
-(45, 23, 'c84e83786b99f7a101db12c339d17a67.jpg'),
-(46, 24, '3c46f3c63a058264623c9341817a517d.jpeg'),
-(47, 24, '38bb6a02d3e7553fdae74ea6330a4949.jpeg'),
-(48, 25, 'f36649b31c4bffb9ca36356b36269cc2.jpeg'),
-(49, 25, 'a8b304bd7c1bdf912ee29101c3accda4.jpeg'),
-(50, 26, '6962328e67977f93385b1bf5d6326918.jpeg'),
-(51, 26, 'bff269145d09c08ba29e69d9e5ad9149.jpeg'),
-(52, 27, '80945e0bc2d746d57e77c6d0a577c42c.jpeg'),
-(53, 27, '0170c8e8a3b56878f7d8f7e67ebf5ac6.jpg'),
-(54, 28, '615002bb323f2d90aa09dcd0b1eb530a.jpg'),
-(55, 28, '6ec9556e803da0337709ea0d7319f0f4.jpg'),
-(56, 28, 'f1cb08474552de66dc6982bf8793c08c.jpg'),
-(57, 28, '29fa66de9d3bbff8af154438b3209e8c.jpg'),
-(58, 29, 'fb2ad8dea2bb3ca1b8052081b3cd4dfa.jpg'),
-(59, 29, '9a4a0279b26dcb4bec27d6e1f0177ba6.jpg'),
-(60, 29, '670fd879c5d0df51ea063c8e06ba7505.jpg'),
-(61, 29, 'f9e99d4bcbc3afcfd5dd651ec43b373f.jpg'),
-(66, 31, '3c3396b551a1acf0267de1ecb1d7a7d1.jpg'),
-(67, 31, 'a77c2f6132ae7b93bb2d07dae68aa702.jpg'),
-(68, 31, 'a28b88c86e589966f0a20fa9b24e38a9.jpg'),
-(69, 31, 'c90b1bd0713ef7fc428def7ccba2aca5.jpg');
+(93, 19, '012f475b6b1b2df91b57b6bae930114f.jpg'),
+(94, 19, '2b7f4709539de8fb4abe13899f04621c.jpg'),
+(95, 21, '70fc2bb7a55d23013a77df144f112196.jpg'),
+(96, 21, '33b46feb7878af379619f86e54e8405b.jpg'),
+(97, 21, '69ad9722fe7e3986ed030aea21d023ca.jpg'),
+(98, 22, 'b077f51969594a70116846784be3b42e.jpg'),
+(99, 22, 'e61c8804129eae89a79fcd8dcde3535f.jpg'),
+(100, 23, 'b0c25a004147d03c41d4484cb3c12e4b.jpg'),
+(101, 23, '40760563ee8fd34c8e881cdbec7e850d.jpg'),
+(102, 27, '4c9f4b5299a60355bed4bedc3f38ecc0.jpg'),
+(103, 27, '01446ab814deeb97849ac96b9724e505.jpg'),
+(104, 24, '76e3349de770fe1697d12841ea5407a9.jpg'),
+(105, 24, 'ff88247d4637b3e47acb9c9e5999cd59.jpg'),
+(106, 24, '5824f4efb9846249e5199699425cfabc.jpg'),
+(107, 25, '2ce8f70b9b91a7a1db52b7090b7864aa.jpg'),
+(108, 25, '740195e9f2a05b936f3a5b947922ef40.jpg'),
+(109, 26, '8700226be90b2bb1d266cb7b7472efe3.jpg'),
+(110, 26, '6fefb7184477e2fdef4f8d793dd3b6c2.jpg'),
+(111, 26, 'e2ae3f5adf9f856985c59441534f2433.jpg'),
+(115, 38, '1be5e4f600701eec7c4a398fa9a54d05.jpg'),
+(116, 38, '4a106a232f5fbbef2bac1bea571d8b4a.jpg'),
+(117, 38, '4c02c0b96512ae6b0a130cb9cead3ef3.jpg'),
+(118, 39, '2729b92d9e88ed8e317198b1409c6e94.jpg'),
+(119, 39, '966d3ebe49ee49ba90c9870cd7d34a0f.jpg'),
+(120, 39, '8c3b1bdb6a3e763fb79d1d192b1a98a9.jpg');
 
 -- --------------------------------------------------------
 
@@ -308,7 +299,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`UserID`, `Username`, `Password`, `Namalengkap`, `Nomortlp`, `Email`, `Kota`, `Kecamatan`, `Alamatfull`) VALUES
 (1, 'admin', 'admin', 'Admin', '+628314067689', NULL, NULL, NULL, NULL),
-(12, 'pratama123', '$2y$10$pjzwciQHkGiRMWKA8RxqkOVDqP6kopUMH7jAm9oyOS5VaDCJzDlfO', 'Pratama Arbianto', '+628314189', 'pratama123@gmail.com', 'Jakarta Utara', 'Kapuk Muara', 'Jakarta Utara');
+(13, 'ibnuar123', '$2y$10$SfDitjV1mjZwVROyT6XiHezGvYtOSolJp11D7kKAqsdk6fN8umGfu', 'Ibnu Arbianto Pratama', '+628314189', 'ibnuar123@gmail.com', 'Jakarta Utara', 'Kamal Muara', 'Jl. Kenari Golf 6 51-19, RT.6/RW.2, Kamal Muara, Kec. Penjaringan, Jkt Utara, Daerah Khusus Ibukota Jakarta 14470, Indonesia');
 
 --
 -- Indexes for dumped tables
@@ -382,37 +373,37 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `adopsi`
 --
 ALTER TABLE `adopsi`
-  MODIFY `AdoptionID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `AdoptionID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `animal`
 --
 ALTER TABLE `animal`
-  MODIFY `AnimalID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `AnimalID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `gambar_animal`
 --
 ALTER TABLE `gambar_animal`
-  MODIFY `GambarID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `GambarID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT for table `laporan_adopsi`
 --
 ALTER TABLE `laporan_adopsi`
-  MODIFY `LaporanID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `LaporanID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `laporan_user`
 --
 ALTER TABLE `laporan_user`
-  MODIFY `LaporanID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `LaporanID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `UserID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

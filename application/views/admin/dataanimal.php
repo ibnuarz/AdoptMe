@@ -44,7 +44,7 @@
                                     ?></td>
                                     <td>
                                         <?php foreach ($animal->gambar as $gambar) : ?>
-                                            <img src="<?php echo base_url('./Assets/img/post/' . $gambar->NamaGambar); ?>" alt="Gambar Hewan" width="100">
+                                            <img src="<?php echo base_url('./assets/img/post/' . $gambar->NamaGambar); ?>" alt="Gambar Hewan" width="100">
                                         <?php endforeach; ?>
                                     </td>
                                     <td><?php echo $animal->RasID; ?></td>
